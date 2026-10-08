@@ -1,0 +1,17 @@
+# 記事を push したら、Cloudflare Pages のビルドを起動して公開する
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  check-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm run check
+      - name: Cloudflare Pages の Deploy Hook を叩く
+        run: curl -fsS -X POST "$DEPLOY_HOOK_URL"
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}
