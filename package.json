@@ -1,0 +1,9 @@
+{
+  "name": "hurarusight-articles",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "new": "node scripts/new.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}
